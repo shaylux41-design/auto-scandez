@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="تطبيق فحص كهرباء السيارة - تشخيص الأعطال الكهربائية">
+    <title>⚡ فحص كهرباء السيارة</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>⚡ فحص كهرباء السيارة</h1>
+            <p>تشخيص شامل للأعطال الكهربائية</p>
+        </header>
+
+        <nav class="tabs">
+            <button class="tab-btn active" data-tab="home">🏠 الرئيسية</button>
+            <button class="tab-btn" data-tab="diagnose">🔍 التشخيص</button>
+            <button class="tab-btn" data-tab="symptoms">⚠️ الأعراض</button>
+            <button class="tab-btn" data-tab="history">📋 السجل</button>
+            <button class="tab-btn" data-tab="guide">📖 دليل</button>
+        </nav>
+
+        <section class="card active" id="home">
+            <h2>👋 مرحباً بك في نظام التشخيص الكهربائي</h2>
+            <p class="intro">تطبيق متخصص لفحص الدوائر الكهربائية في السيارة، يكتشف الأعطال الشائعة مثل:</p>
+            <div class="features">
+                <div class="feature-box">
+                    <span class="icon">🔋</span>
+                    <h3>البطارية والشحن</h3>
+                    <p>قياس الجهد، كشف التسرب، فحص المولد</p>
+                </div>
+                <div class="feature-box">
+                    <span class="icon">🔌</span>
+                    <h3>الدوائر الفرعية</h3>
+                    <p>النوافذ، الإضاءة، القفل المركزي</p>
+                </div>
+                <div class="feature-box">
+                    <span class="icon">📉</span>
+                    <h3>انخفاض الجهد</h3>
+                    <p>فحص الكابلات والتوصيلات</p>
+                </div>
+                <div class="feature-box">
+                    <span class="icon">🧠</span>
+                    <h3>الوحدات الإلكترونية</h3>
+                    <p>ECU، BCM، المستشعرات</p>
+                </div>
+            </div>
+            <div class="stats" id="homeStats"></div>
+        </section>
+
+        <section class="card" id="diagnose">
+            <h2>🔍 فحص مكونات النظام الكهربائي</h2>
+            <div class="form-group">
+                <label>🚙 نوع السيارة</label>
+                <input type="text" id="carModel" placeholder="مثال: تويوتا كامري 2020">
+            </div>
+            <div class="form-group">
+                <label>🔢 رقم اللوحة</label>
+                <input type="text" id="carPlate" placeholder="مثال: أ ب ج 1234">
+            </div>
+            <h3>⚡ قائمة الفحص الكهربائي</h3>
+            <p class="hint">ضع ✓ للمكونات التي تعمل بشكل صحيح</p>
+            <div class="checklist" id="checklist"></div>
+
+            <h3>📊 قياسات الجهد (اختياري)</h3>
+            <div class="voltage-section">
+                <div class="form-group">
+                    <label>🔋 جهد البطارية (محرك متوقف) - 12.6V</label>
+                    <input type="number" step="0.1" id="batteryResting" placeholder="12.6">
+                </div>
+                <div class="form-group">
+                    <label>⚡ جهد الشحن (محرك يعمل) - 13.5-14.7V</label>
+                    <input type="number" step="0.1" id="chargingVoltage" placeholder="14.2">
+                </div>
+                <div class="form-group">
+                    <label>📉 تيار التسرب (mA) - أقل من 50mA</label>
+                    <input type="number" id="parasiticDraw" placeholder="30">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>📝 ملاحظات إضافية</label>
+                <textarea id="notes" rows="3" placeholder="أي ملاحظات..."></textarea>
+            </div>
+
+            <button class="btn" id="analyzeBtn">📊 تحليل النتيجة</button>
+            <div class="result" id="result"></div>
+        </section>
+
+        <section class="card" id="symptoms">
+            <h2>⚠️ تشخيص حسب الأعراض</h2>
+            <p class="hint">اختر العرض الذي تعاني منه السيارة</p>
+            <div id="symptomsList"></div>
+            <div id="symptomResult" class="result"></div>
+        </section>
+
+        <section class="card" id="history">
+            <h2>📋 سجل الفحوصات</h2>
+            <div id="historyList"></div>
+            <button class="btn btn-danger" id="clearHistoryBtn">🗑️ حذف السجل</button>
+        </section>
+
+        <section class="card" id="guide">
+            <h2>📖 دليل المستخدم</h2>
+            <div class="guide-content">
+                <div class="guide-section">
+                    <h3>🛠️ الأدوات المطلوبة</h3>
+                    <ul>
+                        <li>🔧 مقياس متعدد (Multimeter) رقمي</li>
+                        <li>💡 مصباح اختبار (Test Light)</li>
+                        <li>📱 قارئ OBD-II (اختياري)</li>
+                        <li>🔍 مفكات وأدوات فك التوصيلات</li>
+                    </ul>
+                </div>
+                <div class="guide-section">
+                    <h3>🔋 فحص البطارية</h3>
+                    <ul>
+                        <li>الجهد الساكن الصحي: <strong>12.6V</strong></li>
+                        <li>أقل من 12.4V = نقص في الشحن</li>
+                        <li>أثناء التشغيل: <strong>13.5-14.7V</strong></li>
+                        <li>إذا بقي عند 12V = عطل في المولد</li>
+                    </ul>
+                </div>
+                <div class="guide-section">
+                    <h3>📉 كشف التسرب الكهربائي</h3>
+                    <ul>
+                        <li>أوقف السيارة وانتظر 10-45 دقيقة</li>
+                        <li>افصل الكابل السالب ووصل الجهاز على التوالي</li>
+                        <li>طبيعي: أقل من <strong>50mA</strong></li>
+                        <li>مشكلة: أكثر من <strong>100mA</strong></li>
+                    </ul>
+                </div>
+                <div class="guide-section">
+                    <h3>🔍 انخفاض الجهد</h3>
+                    <ul>
+                        <li>الجانب الموجب: أقل من 0.5V</li>
+                        <li>الجانب السالب (التأريض): أقل من 0.2V</li>
+                        <li>قيمة أعلى = تآكل في الكابلات</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>⚡ فحص كهرباء السيارة © 2025 | صُنع بـ ❤️ للميكانيكيين العرب</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
